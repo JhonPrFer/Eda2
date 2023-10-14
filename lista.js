@@ -1,10 +1,10 @@
-import {Pagina} from "./pagina.js"
-
-export default class Lista{
-    constructor(quantPags, paginas=[], paginaDisponivel = 0){
+import Pagina from "./pagina.js" 
+/* const Pagina = require("./pagina.js") */
+ class Lista{
+    constructor(quantPags = 0, paginas=[], paginaDisponivel = 0){
       this.quantPags = quantPags
       this.paginas = paginas
-      this.paginaDisponivel
+      this.paginaDisponivel = paginaDisponivel
       
     }
 
@@ -13,7 +13,6 @@ export default class Lista{
         this.paginas.push(novaPagina)
         this.quantPags = this.quantPags + 1
         this.paginaDisponivel = this.quantPags - 1
-
     }
 
     checarPaginaDisponivel(){
@@ -42,3 +41,5 @@ export default class Lista{
         }
     }
 }
+
+export default Lista

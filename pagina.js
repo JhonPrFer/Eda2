@@ -1,4 +1,4 @@
-export default class Pagina{
+ class Pagina{
     constructor(espaco, registros=[]){
         this.espacoInicial = espaco
         this.espaco = espaco
@@ -7,13 +7,9 @@ export default class Pagina{
     
     addRegistro(registro){
         this.registros.push(registro)
-        this.espaco = this.espaco - 1
-
-        if(this.espaco == 0){
-            return false
-        }
-        
-        return true
+        this.espaco = this.espaco - 1        
     }
 
 }
+
+export default Pagina

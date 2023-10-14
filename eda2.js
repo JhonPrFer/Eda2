@@ -1,4 +1,6 @@
-import Hash from "./hash";
+
+import Hash from "./hash.js";
+
 let chaves = [];
 let p = [1];
 //, 5, 10, 20, 50
@@ -11,7 +13,12 @@ function LinearHashing(lista, p, alphamax){
 p.map((pag)=>{
     for(let i = 0;i<10;i++){
 
-        let lista = myRandomInts(1000 * pag, 1000 * pag * 2)
+        let lista = myRandomInts(1000 * pag, 1000 * pag * 10)
+
+        
+        lista.map(reg => {
+
+        })
 
         let lista20 = my20(lista)
         let listaNot20 = mynot20(lista)
@@ -25,7 +32,16 @@ p.map((pag)=>{
 
 let pInc = 10
 let alphaInc = 0.85
-let listaInc = myRandomInts(10000, 20000)
+/* let listaInc = myRandomInts(50, 150) */
+let listaInc = [8, 11, 10, 15, 17, 25, 44, 12, 78, 23, 67, 62, 79, 48, 46]
+
+
+let hash = new Hash (0.8, 2, 2)
+listaInc.map((reg)=>{
+  /* console.log(reg) */
+  hash.addRegistro(reg)
+})
+hash.exibirHash() 
 
 
 function myRandomInts(quantity, max){
@@ -55,8 +71,4 @@ function mynot20(list){
     }
     return(arr)
 }
-  
-let hash = new Hash (2, 0.2, 0, 1)
-hash.addRegistro(1)
-hash.addRegistro(2)
-console.log(hash)
+
