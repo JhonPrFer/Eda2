@@ -28,75 +28,100 @@ class Hash {
                 this.addLista(this.espacoPagina)
             }
         }
-
-     
-        let listaEscolhida = reg % ((2 ** this.level) * this.m)
         
+        let listaEscolhida = reg % ((2 ** this.level) * this.m)
+
         if (listaEscolhida >= this.next) {
-            if (listaEscolhida < this.contLista) {
-                for (let i = 0; i < this.contLista; i++) {
-                    if (i == listaEscolhida) {
-                        /* console.log(reg, listaEscolhida, this.listas[1].paginaDisponivel, this.listas[1].paginas) */
-                        if(this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0){
-                            this.listas[i].addPagina(this.espacoPagina)
-                        }
-                        /* console.log("nao quebrei") */
-                        
-                        this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-                    }
-                }
-            } else {
+            if (listaEscolhida >= this.contLista) {
                 
                 while (listaEscolhida >= this.contLista) {
-                    this.addLista()
+                    this.addLista(this.espacoPagina)
                     /* console.log("Lista adicionada" , listaEscolhida) */
-                }
-                
-                for (let i = 0; i < this.contLista; i++) {
-                    if (i == listaEscolhida) {
-                        if(this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0){
-                            this.listas[i].addPagina(this.espacoPagina)
-                        }
-                        
-                        this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-                    }
                 }
             }
             
         } else {
             listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-            if (listaEscolhida < this.contLista) {
-                for (let i = 0; i < this.contLista; i++) {
-                    if (i == listaEscolhida) {
-                        if(this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0){
-                            this.listas[i].addPagina(this.espacoPagina)
-                        }
-                        
-                        this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-                    }
-                }
-                
-            } else {
+            if (listaEscolhida >= this.contLista){
                 
                 while (listaEscolhida >= this.contLista) {
                     this.addLista(this.espacoPagina)
                 }
-
-                for (let i = 0; i < this.contLista; i++) {
-                    if (i == listaEscolhida) {
-                        if(this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0){
-                            this.listas[i].addPagina(this.espacoPagina)
-                        }
-
-                        this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-                    }
-                }
             }
         }
-
+        
+        for (let i = 0; i < this.contLista; i++) {
+            if (i == listaEscolhida) {
+                if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
+                    this.listas[i].addPagina(this.espacoPagina)
+                }
+                
+                this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
+            }
+        }
+        
+        // if (listaEscolhida >= this.next) {
+        //     if (listaEscolhida < this.contLista) {
+        //         for (let i = 0; i < this.contLista; i++) {
+        //             if (i == listaEscolhida) {
+        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
+        //                     this.listas[i].addPagina(this.espacoPagina)
+        //                 }
+                        
+        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
+        //             }
+        //         }
+        //     } else {
+                
+        //         while (listaEscolhida >= this.contLista) {
+        //             this.addLista(this.espacoPagina)
+        //             /* console.log("Lista adicionada" , listaEscolhida) */
+        //         }
+                
+        //         for (let i = 0; i < this.contLista; i++) {
+        //             if (i == listaEscolhida) {
+        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
+        //                     this.listas[i].addPagina(this.espacoPagina)
+        //                 }
+                        
+        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
+        //             }
+        //         }
+        //     }
+            
+        // } else {
+        //     listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
+        //     if (listaEscolhida < this.contLista) {
+        //         for (let i = 0; i < this.contLista; i++) {
+        //             if (i == listaEscolhida) {
+        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
+        //                     this.listas[i].addPagina(this.espacoPagina)
+        //                 }
+                        
+        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
+        //             }
+        //         }
+                
+        //     } else {
+                
+        //         while (listaEscolhida >= this.contLista) {
+        //             this.addLista(this.espacoPagina)
+        //         }
+                
+        //         for (let i = 0; i < this.contLista; i++) {
+        //             if (i == listaEscolhida) {
+        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
+        //                     this.listas[i].addPagina(this.espacoPagina)
+        //                 }
+                        
+        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
+        //             }
+        //         }
+        //     }
+        // }
         this.fatorCarga = this.calcFatorCarga()
-        //Quebra de pagina
         while (this.fatorCarga > this.cargaMax) {
+            /*  console.log(reg, this.fatorCarga, this.next, this.limiteNext) */
             this.addLista()
             if (this.next == this.limiteNext) {
                 this.level++
@@ -106,14 +131,16 @@ class Hash {
             } else {
                 this.next++
                 this.redistriduir(this.next)
+                this.listas[this.next - 1].corrigirLista()
             }
             this.limiteNext = ((2 ** this.level) * this.m) - 1
-            this.listas[this.next].corrigirLista()
             this.fatorCarga = this.calcFatorCarga()
             
         }
+        console.log(reg)
+        this.exibirHash()
     }
-
+    
     calcFatorCarga() {
         let fatorCarga = 0
         let espacoTotal = 0
@@ -130,19 +157,15 @@ class Hash {
         list = list  - 1
         list < 0 ? list = 0: list = list 
         this.listas[list].paginas.map((pag) => {
-            pag.registros.map((reg) => {
-                if(reg % ((2 ** (this.level + 1)) * this.m) != list){
-                pag.registros[pag.registros.indexOf(reg)] = null
-                pag.espaco++
-                this.addRegistro(reg)
-            }
-            })
-            for(let i = 0 ; i < pag.registros.length; i++){
-                if(pag.registros[i] == null){
+            for(let i = 0; i < pag.registros.length; i++) {
+                if (pag.registros[i] % ((2 ** (this.level + 1)) * this.m) != list) {
+                    let reg = pag.registros[i]
                     pag.registros.splice(i, 1)
-                    i --
-                }
-            }
+                    i--
+                    pag.espaco++
+                    this.addRegistro(reg)
+                } 
+            }  
         })
     }
 
@@ -154,9 +177,27 @@ class Hash {
 
         for (let i = 0; i < this.contLista; i++) {
             console.log("Lista", i)
-            this.listas[i].paginas.forEach( (pag) => { console.log(pag.registros) } )
+            this.listas[i].paginas.forEach((pag) => { console.log(pag.registros) })
             console.log()
         }
+    }
+
+    buscar(reg) {
+        let lista = reg % ((2 ** (this.level)) * this.m)
+
+        if (lista < this.next) {
+            lista = reg % ((2 ** (this.level + 1)) * this.m)
+        }
+
+        this.listas[lista].paginas.forEach((pag) => {
+            if (reg in pag) {
+                console.log("Registro encontado")
+                return true
+            }
+        })
+
+        console.log("Registro não encontado")
+        return false
     }
 
 }

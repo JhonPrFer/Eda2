@@ -32,15 +32,19 @@ p.map((pag)=>{
 
 let pInc = 10
 let alphaInc = 0.85
-/* let listaInc = myRandomInts(50, 150) */
-let listaInc = [8, 11, 10, 15, 17, 25, 44, 12, 78, 23, 67, 62, 79, 48, 46]
-
+/* let listaInc = myRandomInts(20, 100) */
+let listaInc = [42, 65, 75, 61, 64, 78,/*,
+  89, 92,  9, 15,  5, 87, 80,
+  73, 84, 13, 19, 30, 31 */]
+  
+  console.log(listaInc)
 
 let hash = new Hash (0.8, 2, 2)
 listaInc.map((reg)=>{
   /* console.log(reg) */
   hash.addRegistro(reg)
 })
+/* hash.listas[2].corrigirLista1() */
 hash.exibirHash() 
 
 
