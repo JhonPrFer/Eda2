@@ -25,52 +25,45 @@ class Hash {
     addRegistro(reg) {
         if (this.contLista == 0) {
             for (let i = 0; i < this.m; i++) {
-                this.addLista(this.espacoPagina)
+                this.addLista()
             }
         }
-        
+
         let listaEscolhida = reg % ((2 ** this.level) * this.m)
-        console.log(this.next, listaEscolhida)
 
         if (listaEscolhida < this.next) {
             listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-        } 
-        
+        }
+
         while (listaEscolhida >= this.contLista) {
-            this.addLista(this.espacoPagina)
+            this.addLista()
         }
 
         for (let i = 0; i < this.contLista; i++) {
             if (i == listaEscolhida) {
+                this.listas[i].checarPaginaDisponivel()
                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
                     this.listas[i].addPagina(this.espacoPagina)
                 }
-                
+
                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
             }
         }
-        
+
         this.fatorCarga = this.calcFatorCarga()
+
         while (this.fatorCarga > this.cargaMax) {
-            /*  console.log(reg, this.fatorCarga, this.next, this.limiteNext) */
             this.addLista()
-            if (this.next == this.limiteNext) {
-                this.level++
-                this.redistriduir(this.next + 1)
-                this.listas[this.next].corrigirLista()
-                this.next = 0
-            } else {
-                this.next++
-                this.redistriduir(this.next)
-                this.listas[this.next - 1].corrigirLista()
-            }
+            let oldNext = this.next
+
+            this.redistriduir(this.next)
+            this.listas[oldNext].corrigirLista()
+
             this.limiteNext = ((2 ** this.level) * this.m) - 1
             this.fatorCarga = this.calcFatorCarga()
-            
         }
-
     }
-    
+
     calcFatorCarga() {
         let fatorCarga = 0
         let espacoTotal = 0
@@ -83,20 +76,34 @@ class Hash {
         return fatorCarga / espacoTotal
     }
 
-    redistriduir(list) {
-        list = list  - 1
-        list < 0 ? list = 0: list = list 
-        this.listas[list].paginas.map((pag) => {
-            for(let i = 0; i < pag.registros.length; i++) {
-                if (pag.registros[i] % ((2 ** (this.level + 1)) * this.m) != list) {
-                    let reg = pag.registros[i]
+    redistriduir(next) {
+        this.listas[next].paginas.forEach((pag) => {
+            for(let i = 0; i < pag.registros.length; i++) {  
+                let reg = pag.registros[i]
+                let listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
+                
+                if(listaEscolhida != next) {
                     pag.registros.splice(i, 1)
                     i--
                     pag.espaco++
-                    listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-                } 
-            }  
+                    this.listas[this.contLista - 1].checarPaginaDisponivel()
+                    
+                    if (this.listas[this.contLista - 1].paginas[this.listas[this.contLista - 1].paginaDisponivel].espaco == 0) {
+                        this.listas[this.contLista - 1].addPagina(this.espacoPagina)
+                    }
+                    this.listas[this.contLista - 1].paginas[this.listas[this.contLista - 1].paginaDisponivel].addRegistro(reg)
+                    this.listas[this.contLista - 1].corrigirLista()
+                }
+            }
         })
+
+        next++
+        if(next >= (2 ** this.level) * this.m){
+            next = 0
+            this.level++
+        }
+
+        this.next = next
     }
 
     exibirHash() {

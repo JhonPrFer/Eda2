@@ -21,7 +21,7 @@ class Lista {
                 this.paginaDisponivel = i
                 break
             }
-            if(this.paginas[i].espaco == 0 && i == this.quantPags){
+            if(this.paginas[i].espaco == 0 && i == this.quantPags - 1){
                 this.paginaDisponivel = i
                 break
             }
