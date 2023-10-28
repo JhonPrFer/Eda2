@@ -44,10 +44,10 @@ class Lista {
         }
         for (let i = 0; i < this.quantPags; i++) {
             if ((this.paginas[i].espaco > 0) && (i != (this.quantPags - 1))) {
-                while (this.paginas[i].espaco > 0) {
+                while (this.paginas[i].espaco > 0 && i != this.quantPags - 1) {
                     this.paginas[i].registros.push(this.paginas[this.quantPags - 1].registros[0])
                     this.paginas[i].espaco--
-                    this.paginas[this.quantPags - 1].registros.splice(i, 1)
+                    this.paginas[this.quantPags - 1].registros.shift()
                     this.paginas[this.quantPags - 1].espaco++
                     if (this.paginas[this.quantPags - 1].espaco == this.paginas[this.quantPags - 1].espacoInicial) {
                         this.paginas.pop()

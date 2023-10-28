@@ -30,7 +30,6 @@ class Hash {
         }
 
         let listaEscolhida = reg % ((2 ** this.level) * this.m)
-
         if (listaEscolhida < this.next) {
             listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
         }
@@ -62,6 +61,7 @@ class Hash {
             this.limiteNext = ((2 ** this.level) * this.m) - 1
             this.fatorCarga = this.calcFatorCarga()
         }
+        /* this.exibirHash() */
     }
 
     calcFatorCarga() {
@@ -81,7 +81,6 @@ class Hash {
             for(let i = 0; i < pag.registros.length; i++) {  
                 let reg = pag.registros[i]
                 let listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-                
                 if(listaEscolhida != next) {
                     pag.registros.splice(i, 1)
                     i--
@@ -126,17 +125,21 @@ class Hash {
             lista = reg % ((2 ** (this.level + 1)) * this.m)
         }
 
+        let achou = false
         this.listas[lista].paginas.forEach((pag) => {
-            if (reg in pag) {
-                console.log("Registro encontado")
-                return true
-            }
+            pag.registros.forEach((registro) => {
+                if (reg == registro) {
+                    achou = true
+                    return
+                } 
+            })
         })
 
-        console.log("Registro não encontado")
-        return false
-    }
+        achou ? 
+        console.log(reg, "Registro encontrado") : 
+        console.log(reg, "Registro não encontrado")
 
+    }
 }
 
 
