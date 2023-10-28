@@ -33,9 +33,9 @@ p.map((pag)=>{
 let pInc = 10
 let alphaInc = 0.85
 /* let listaInc = myRandomInts(20, 100) */
-let listaInc = [42, 65, 75, 61, 64, 78,/*,
+let listaInc = [42, 65, 75, 61, 64, 78/*,
   89, 92,  9, 15,  5, 87, 80,
-  73, 84, 13, 19, 30, 31 */]
+73, 84, 13, 19, 30, 31 */ ]
   
   console.log(listaInc)
 
