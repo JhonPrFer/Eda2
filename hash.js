@@ -30,26 +30,17 @@ class Hash {
         }
         
         let listaEscolhida = reg % ((2 ** this.level) * this.m)
+        console.log(this.next, listaEscolhida)
 
-        if (listaEscolhida >= this.next) {
-            if (listaEscolhida >= this.contLista) {
-                
-                while (listaEscolhida >= this.contLista) {
-                    this.addLista(this.espacoPagina)
-                    /* console.log("Lista adicionada" , listaEscolhida) */
-                }
-            }
-            
-        } else {
+        //refactor
+        if (listaEscolhida < this.next) {
             listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-            if (listaEscolhida >= this.contLista){
-                
-                while (listaEscolhida >= this.contLista) {
-                    this.addLista(this.espacoPagina)
-                }
-            }
         }
         
+        while (listaEscolhida >= this.contLista) {
+            this.addLista(this.espacoPagina)
+        }
+
         for (let i = 0; i < this.contLista; i++) {
             if (i == listaEscolhida) {
                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
@@ -137,8 +128,7 @@ class Hash {
             this.fatorCarga = this.calcFatorCarga()
             
         }
-        console.log(reg)
-        this.exibirHash()
+
     }
     
     calcFatorCarga() {
@@ -163,7 +153,7 @@ class Hash {
                     pag.registros.splice(i, 1)
                     i--
                     pag.espaco++
-                    this.addRegistro(reg)
+                    listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
                 } 
             }  
         })
