@@ -32,10 +32,9 @@ class Hash {
         let listaEscolhida = reg % ((2 ** this.level) * this.m)
         console.log(this.next, listaEscolhida)
 
-        //refactor
         if (listaEscolhida < this.next) {
             listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-        }
+        } 
         
         while (listaEscolhida >= this.contLista) {
             this.addLista(this.espacoPagina)
@@ -51,65 +50,6 @@ class Hash {
             }
         }
         
-        // if (listaEscolhida >= this.next) {
-        //     if (listaEscolhida < this.contLista) {
-        //         for (let i = 0; i < this.contLista; i++) {
-        //             if (i == listaEscolhida) {
-        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
-        //                     this.listas[i].addPagina(this.espacoPagina)
-        //                 }
-                        
-        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-        //             }
-        //         }
-        //     } else {
-                
-        //         while (listaEscolhida >= this.contLista) {
-        //             this.addLista(this.espacoPagina)
-        //             /* console.log("Lista adicionada" , listaEscolhida) */
-        //         }
-                
-        //         for (let i = 0; i < this.contLista; i++) {
-        //             if (i == listaEscolhida) {
-        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
-        //                     this.listas[i].addPagina(this.espacoPagina)
-        //                 }
-                        
-        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-        //             }
-        //         }
-        //     }
-            
-        // } else {
-        //     listaEscolhida = reg % ((2 ** (this.level + 1)) * this.m)
-        //     if (listaEscolhida < this.contLista) {
-        //         for (let i = 0; i < this.contLista; i++) {
-        //             if (i == listaEscolhida) {
-        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
-        //                     this.listas[i].addPagina(this.espacoPagina)
-        //                 }
-                        
-        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-        //             }
-        //         }
-                
-        //     } else {
-                
-        //         while (listaEscolhida >= this.contLista) {
-        //             this.addLista(this.espacoPagina)
-        //         }
-                
-        //         for (let i = 0; i < this.contLista; i++) {
-        //             if (i == listaEscolhida) {
-        //                 if (this.listas[i].paginas[this.listas[i].paginaDisponivel].espaco == 0) {
-        //                     this.listas[i].addPagina(this.espacoPagina)
-        //                 }
-                        
-        //                 this.listas[i].paginas[this.listas[i].paginaDisponivel].addRegistro(reg)
-        //             }
-        //         }
-        //     }
-        // }
         this.fatorCarga = this.calcFatorCarga()
         while (this.fatorCarga > this.cargaMax) {
             /*  console.log(reg, this.fatorCarga, this.next, this.limiteNext) */
