@@ -27,16 +27,16 @@ function LinearHashing() {
         // console.log('alfa médio : ' + hash.cargaMedia().toFixed(4))
         // console.log('p* : ' + hash.pAsterisco().toFixed(4)) 
 
-        // let C = 0
-        // lista20.map(reg => {
-        //   C += hash.buscar(reg)
-        // })
+        let C = 0
+        lista20.map(reg => {
+          C += hash.buscar(reg)
+        })
         /* console.log("Busca com sucesso : " + C / lista20.length) */
 
-        // let S = 0
-        // listaNot20.map(reg => {
-        //   S += hash.buscar(reg)
-        // })
+        let S = 0
+        listaNot20.map(reg => {
+          S += hash.buscar(reg)
+        })
         // console.log("Busca sem sucesso : " + S / listaNot20.length)
 
         let Obj = {
@@ -44,8 +44,8 @@ function LinearHashing() {
           fatorCargaMax: a,
           alfaMedio: hash.cargaMedia().toFixed(4),
           pAsterisco: hash.pAsterisco().toFixed(4),
-          // buscaComSucesso: C / lista20.length,
-          // buscaSemSucesso: S / listaNot20.length
+          buscaComSucesso: C / lista20.length,
+          buscaSemSucesso: S / listaNot20.length
         }
         arrAlfa.push(Obj)
 
@@ -64,8 +64,8 @@ function LinearHashing() {
       console.log("Carga: " + arr[i][j].fatorCargaMax)
       console.log("Carga media: " + arr[i][j].alfaMedio)
       console.log("p*: " + arr[i][j].pAsterisco)
-      // console.log("Busca com sucesso: " + arr[i][j].buscaComSucesso)
-      // console.log("Busca sem sucesso: " + arr[i][j].buscaSemSucesso)
+      console.log("Busca com sucesso: " + arr[i][j].buscaComSucesso)
+      console.log("Busca sem sucesso: " + arr[i][j].buscaSemSucesso)
       console.log("")
     }
   }
@@ -93,24 +93,24 @@ function LinearHashing() {
 
 LinearHashing()
 
-// let listaInc = myRandomInts(10000, 60000)
+let listaInc = myRandomInts(10000, 60000)
 
-// let hash = new Hash(0.85, 2, 10)
+let hash = new Hash(0.85, 2, 10)
 
-// let carga = []
-// let pA = []
-// let lMax = []
+let carga = []
+let pA = []
+let lMax = []
 
-// listaInc.map((reg) => {
-//   hash.addRegistro(reg)
-//   carga.push(hash.cargaMedia().toFixed(2))
-//   pA.push(hash.pAsterisco().toFixed(2))
-//   lMax.push(hash.lMax())
-// })
+listaInc.map((reg) => {
+  hash.addRegistro(reg)
+  carga.push(hash.cargaMedia().toFixed(2))
+  pA.push(hash.pAsterisco().toFixed(2))
+  lMax.push(hash.lMax())
+})
 
-// console.log(carga)
-// console.log(pA.toString())
-// console.log(lMax.toString())
+console.log(carga.toString())
+console.log(pA.toString())
+console.log(lMax.toString())
 
 
 function myRandomInts(quantity, max) {
