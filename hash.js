@@ -119,28 +119,70 @@ class Hash {
     }
 
     buscar(reg) {
+        let acessos = 1
         let lista = reg % ((2 ** (this.level)) * this.m)
 
         if (lista < this.next) {
+            acessos = 2
             lista = reg % ((2 ** (this.level + 1)) * this.m)
         }
 
         let achou = false
         this.listas[lista].paginas.forEach((pag) => {
-            pag.registros.forEach((registro) => {
+            pag.registros.forEach((registro, i) => {
                 if (reg == registro) {
                     achou = true
-                    return
-                } 
+                    return 
+                }
             })
         })
 
-        achou ? 
+        /* achou ? 
         console.log(reg, "Registro encontrado") : 
-        console.log(reg, "Registro não encontrado")
+        console.log(reg, "Registro não encontrado") */
+        
+        return acessos
 
     }
+
+    cargaMedia(){
+        let espacoOcupado = 0
+        let espacoGeral = 0
+
+        this.listas.forEach((lista)=>{
+            lista.paginas.forEach((pag)=>{
+                espacoOcupado += (pag.espacoInicial - pag.espaco)
+                espacoGeral += pag.espacoInicial
+            })
+        })
+
+        let media = espacoOcupado / espacoGeral
+        return media
+    }
+
+    pAsterisco(){
+        let somaPagPorList = 0
+        let media
+
+        this.listas.forEach((lista)=>{
+            somaPagPorList += lista.quantPags
+        })
+
+        media = somaPagPorList / this.contLista
+        return media
+    }
+
+    lMax(){
+        let copia
+        copia = this.listas.sort((a,b)=>{
+            return b.quantPags - a.quantPags
+        })
+        return copia[0].quantPags
+    }
+
+
 }
+
 
 
 export default Hash
