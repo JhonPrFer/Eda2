@@ -1,4 +1,4 @@
-function boyerMooreSearch(text, pattern, iteracao) {
+function boyerMooreSearch(text, pattern, it) {
     const occurrences = [];
     const textLength = text.length;
     const patternLength = pattern.length;
@@ -14,7 +14,7 @@ function boyerMooreSearch(text, pattern, iteracao) {
 
         while (j >= 0 && pattern[j] === text[i + j]) {
             j--;
-            iteracao++;
+            it++;
         }
         if (j < 0) {
             occurrences.push(i);
@@ -22,11 +22,11 @@ function boyerMooreSearch(text, pattern, iteracao) {
         } else {
             const badCharSkip = badCharTable[text[i + j]] || patternLength;
             i += Math.max(1, badCharSkip - (patternLength - 1 - j));
-            iteracao++;
+            it++;
         }
     }
 
-    return [occurrences, iteracao];
+    return [occurrences, it];
 }
 
 export default boyerMooreSearch

@@ -15,9 +15,9 @@ function longestPrefix(str) {
   }
   return table;
 }
-function kmpMatching(str, pattern, iteracao) {
+function kmpSearch(str, pattern, it) {
   var prefixes = longestPrefix(pattern);
-  var matches = [];
+  var occurrences = [];
   
   var j = 0;
   var i = 0;
@@ -27,9 +27,9 @@ function kmpMatching(str, pattern, iteracao) {
       j++;
     }
     if (j === pattern.length) {
-      matches.push(i-j);
+      occurrences.push(i-j);
       j = prefixes[j-1];
-      iteracao++;
+      it++;
     }
     else if (str.charAt(i) !== pattern.charAt(j)) {
         if (j !== 0) {
@@ -37,11 +37,11 @@ function kmpMatching(str, pattern, iteracao) {
         } else {
             i++;
         }
-        iteracao++;
+        it++;
     }
   }
 
-  return [matches, iteracao];
+  return [occurrences, it];
 }
 
-export default kmpMatching
+export default kmpSearch

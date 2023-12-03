@@ -1,4 +1,4 @@
-function boyerMooreHorspoolSearch(text, pattern, iteracao) {
+function boyerMooreHorspoolSearch(text, pattern, it) {
   const occurrences = [];
   const textLength = text.length;
   const patternLength = pattern.length;
@@ -18,7 +18,7 @@ function boyerMooreHorspoolSearch(text, pattern, iteracao) {
 
       while (j >= 0 && pattern[j] === text[i + j]) {
           j--;
-          iteracao++;
+          it++;
       }
 
       if (j < 0) {
@@ -28,7 +28,7 @@ function boyerMooreHorspoolSearch(text, pattern, iteracao) {
       i += badCharTable[text[i + patternLength - 1]] || patternLength;
   }
 
-  return [occurrences, iteracao];
+  return [occurrences, it];
 }
 
 export default boyerMooreHorspoolSearch

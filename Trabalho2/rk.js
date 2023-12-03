@@ -1,4 +1,4 @@
-function rabinKarpSearch(text, pattern, iteracao) {
+function rabinKarpSearch(text, pattern, it) {
   const prime = 101;
   const base = 256;
   const textLength = text.length;
@@ -29,7 +29,7 @@ function rabinKarpSearch(text, pattern, iteracao) {
 
   for (let i = 0; i <= textLength - patternLength; i++) {
       if (textHash === patternHash) {
-        iteracao++;
+        it++;
           let match = true;
           for (let j = 0; j < patternLength; j++) {
               if (text[i + j] !== pattern[j]) {
@@ -44,11 +44,11 @@ function rabinKarpSearch(text, pattern, iteracao) {
 
       if (i < textLength - patternLength) {
           textHash = updateHash(textHash, text[i], text[i + patternLength], power);
-          iteracao++;
+          it++;
       }
   }
 
-  return [result, iteracao];
+  return [result, it];
 }
 
 export default rabinKarpSearch

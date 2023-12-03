@@ -1,9 +1,9 @@
 import boyerMooreSearch from './bm.js'
 import boyerMooreHorspoolSearch from './bmh.js'
-import kmpMatching from './kmp.js'
+import kmpSearch from './kmp.js'
 import rabinKarpSearch from './rk.js'
 
-let alfabetos = [
+let alphabets = [
   ['a', 'b'],
   ['a', 'b', 'c', 'd'],
   ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'],
@@ -17,37 +17,37 @@ let fullBMH = []
 let fullRK = []
 
 for (let i = 0; i < 10; i++) {
-  alfabetos.forEach((alfabeto, index) => {
+  alphabets.forEach((alphabet, index) => {
     let somaKMP = []
     let somaBM = []
     let somaBMH = []
     let somaRK = []
-    let texto = ""
+    let text = ""
 
     for (let j = 0; j < 1000; j++) {
-      let val = Number(Math.floor((Math.random() * alfabeto.length)));
-      texto += alfabeto[val];
+      let val = Number(Math.floor((Math.random() * alphabet.length)));
+      text += alphabet[val];
     }
 
     let padroes = [2, 4, 6, 8, 10, 12, 14];
-    padroes.forEach(tampadrao => {
-      let padrao = texto.slice(texto.length - tampadrao, texto.length)
-      let iteracao = 0
+    padroes.forEach(patternLenght => {
+      let pattern = text.slice(text.length - patternLenght, text.length)
+      let it = 0
       let retorno = []
 
-      retorno = kmpMatching(texto, padrao, iteracao)
+      retorno = kmpSearch(text, pattern, it)
       somaKMP.push(retorno[1] / 1000)
 
-      iteracao = 0
-      retorno = boyerMooreSearch(texto, padrao, iteracao)
+      it = 0
+      retorno = boyerMooreSearch(text, pattern, it)
       somaBM.push(retorno[1] / 1000)
 
-      iteracao = 0
-      retorno = boyerMooreHorspoolSearch(texto, padrao, iteracao)
+      it = 0
+      retorno = boyerMooreHorspoolSearch(text, pattern, it)
       somaBMH.push(retorno[1] / 1000)
 
-      iteracao = 0
-      retorno = rabinKarpSearch(texto, padrao, iteracao)
+      it = 0
+      retorno = rabinKarpSearch(text, pattern, it)
       somaRK.push(retorno[1] / 1000)
     })
 
