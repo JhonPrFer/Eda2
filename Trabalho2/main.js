@@ -109,7 +109,7 @@ for (let i = 0; i < fullRK.length; i++) {
   });
 }
 
-console.log("KMP: " , fullKMP)
+console.log("KMP: ", fullKMP)
 console.log("BM: ", fullBM)
-console.log("BMH:", fullBMH)
-console.log("RK:", fullRK)
+console.log("BMH: ", fullBMH)
+console.log("RK: ", fullRK)
